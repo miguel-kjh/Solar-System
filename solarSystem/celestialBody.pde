@@ -1,42 +1,23 @@
-public class CelestialBody implements Revolution{
-  private PShape body;
-  private float oringX,oringY,oringZ;
-  private DataCalculation dataCalculation;
+public abstract class CelestialBody{
+  
+  private float turningSpeed,speedIncrease;
   private String name;
-  private float ang = 0.25;
+  private PShape pshape;
   
-  public CelestialBody(float oringX,float oringY,float orignZ, int dimension, String name){
-    beginShape();
-    this.body   = createShape(SPHERE, dimension);
-    endShape(CLOSE);
-    this.oringX = oringX;
-    this.oringY = oringY;
-    this.oringZ = oringZ;
-    this.name   = name;
+  public CelestialBody(int dimension, float turningSpeed,float speedIncrease, String name, String pathImage){
+    this.turningSpeed = turningSpeed;
+    this.speedIncrease = speedIncrease;
+    this.name = name;
+    noStroke();
+    pshape = createShape(SPHERE, dimension);
+    pshape.setTexture(loadImage(pathImage));
   }
   
-  public void move(){
-    
+  protected void calculateSpeed(){
+    turningSpeed += speedIncrease;
+    if(turningSpeed >= 360) turningSpeed = 0;
   }
   
-  public void rotateBody(){
-    //pushMatrix();
-    translate(oringX,oringY,oringZ);
-    rotateX(radians(-45));
-    rotateY(radians(ang));
-    //popMatrix();
-    ang += 0.25;
-    if(ang >= 360){
-      ang = 0;
-    }
-  }
-  
-  public void drawBody(){
-    shape(body);
-  }
-  
-  public void moveInZ(int rest){
-    oringZ -= rest;
-  }
+  public abstract void move();
   
 }
