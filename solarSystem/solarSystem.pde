@@ -1,3 +1,6 @@
+import gifAnimation.*;
+
+
 float z               = 0;
 float anguleX         = -45;
 float anguleY         = 0;
@@ -9,10 +12,12 @@ float x;
 float y;
 PImage bg;
 int wordSize = 30;
-
+int countFrame = 0;
+final int maxFrame = 10;
+GifMaker gif;
 
 void setup(){
-  size(1437,719, P3D);
+  size(900,491, P3D);
   solarSystem = new SystemController();
   keyController = new KeyController();
   solarSystem.loadData();
@@ -22,15 +27,39 @@ void setup(){
   fill(255,255,0);
   textAlign(CENTER,CENTER);
   textSize(wordSize);
+  gif = new GifMaker(this,"animation.gif");
+  gif.setRepeat(0);
 }
 
+void setFrame(){
+  if(countFrame == maxFrame){
+      gif.addFrame();
+      countFrame = 0;
+  }
+  countFrame++;
+}
+
+
+boolean isException = true;
 void draw(){
-  background(bg);
+  try{
+    background(bg);
+  }catch(RuntimeException e){
+    background(0);
+    if(isException){
+      println("############### ERROR ##################");
+      println(e);
+      println("the background image is not loaded due to the size of your monitor");
+      isException = false;
+      println("############### ERROR ##################");
+    }
+  }
   translate(x,y,z);
   rotateX(radians(anguleX));
   rotateY(radians(anguleY));
   solarSystem.moveSystem();
   keyController.moveScreen();
+  setFrame();
 }
 
 void keyPressed(){
