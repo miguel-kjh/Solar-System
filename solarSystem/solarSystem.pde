@@ -1,4 +1,4 @@
-import gifAnimation.*;
+//import gifAnimation.*;
 
 
 float z               = 0;
@@ -13,8 +13,8 @@ float y;
 PImage bg;
 int wordSize = 30;
 int countFrame = 0;
-final int maxFrame = 10;
-GifMaker gif;
+/*final int maxFrame = 10;
+GifMaker gif;*/
 
 void setup(){
   size(900,491, P3D);
@@ -27,17 +27,17 @@ void setup(){
   fill(255,255,0);
   textAlign(CENTER,CENTER);
   textSize(wordSize);
-  gif = new GifMaker(this,"animation.gif");
-  gif.setRepeat(0);
+  /*gif = new GifMaker(this,"animation.gif");
+  gif.setRepeat(0);*/
 }
 
-void setFrame(){
+/*void setFrame(){
   if(countFrame == maxFrame){
       gif.addFrame();
       countFrame = 0;
   }
   countFrame++;
-}
+}*/
 
 
 boolean isException = true;
@@ -59,7 +59,7 @@ void draw(){
   rotateY(radians(anguleY));
   solarSystem.moveSystem();
   keyController.moveScreen();
-  setFrame();
+  //setFrame();
 }
 
 void keyPressed(){
