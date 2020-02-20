@@ -1,107 +1,171 @@
-
-//float angP = 0.25;
-//float angS = 0.25;
 float z               = 0;
 float anguleX         = -45;
+float anguleY         = 0;
 String pathBackgorund = "data_image/2k_stars_milky_way.jpg";
 
 SystemController solarSystem;
+KeyController keyController;
 float x;
 float y;
 PImage bg;
+int wordSize = 30;
 
 
 void setup(){
   size(1437,719, P3D);
   solarSystem = new SystemController();
+  keyController = new KeyController();
   solarSystem.loadData();
   bg = loadImage(pathBackgorund);
   x  = width/2;
   y  = height/2;
-
+  fill(255,255,0);
+  textAlign(CENTER,CENTER);
+  textSize(wordSize);
 }
 
 void draw(){
   background(bg);
   translate(x,y,z);
   rotateX(radians(anguleX));
+  rotateY(radians(anguleY));
   solarSystem.moveSystem();
-  
-  
-  /*pushMatrix();
-  rotateY(radians(angP));
-  sphere(100);
-  popMatrix();
-  
-  
-  pushMatrix();
-  rotateY(radians(angP));
-  //rotateZ(radians(angS));
-  translate(-width*0.25,0);
-  sphere(20);
-  pushMatrix();
-  rotateZ(radians(angP));
-  //rotateZ(radians(angS));
-  translate(50,0);
-  sphere(10);
-  popMatrix();
-  popMatrix();
-  
-  pushMatrix();
-  rotateZ(radians(angP+0.5));
-  //rotateZ(radians(angS));
-  translate(-width*0.5,0);
-  sphere(20);
-  pushMatrix();
-  rotateZ(radians(angP));
-  //rotateZ(radians(angS));
-  translate(50,0);
-  sphere(10);
-  popMatrix();
-  pushMatrix();
-  rotateZ(radians(angS));
-  translate(90,0);
-  sphere(10);
-  popMatrix();
-  popMatrix();
-  
-  angP = angP + 0.25;
-  if(angP >= 360) angP = 0;
-  
-  angS = angS + 0.10;
-  if(angS >= 360) angS = 0;*/
-  
+  keyController.moveScreen();
 }
 
 void keyPressed(){
-  float zoom = 100;
-  if(key == 'w' || key == 'W'){
-    y += zoom;
-  }
-  if(key == 's' || key == 'S'){
-    y -= zoom;
-  }
-  if(key == 'a' || key == 'A'){
-    x -= zoom;
-  }
-  if(key == 'd' || key == 'D'){
-    x += zoom;
-  }
-  if(key == 'r' || key == 'R'){
-    x = width/2;
-    y = height/2;
-  }
-  
+  keyController.updateKeysPressed();
+}
+
+void keyReleased(){
+  keyController.updateKeysReleased();
 }
 
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   int zoom = 100;
   if(e < 0){
-    z -= zoom;
-  } else {
     z += zoom;
+  } else {
+    z -= zoom;
   }  
+}
+
+
+class KeyController{
+  private final int zoom = 15;
+  private final int moveAxes = 2;
+  private boolean[] keyPosibles;
+  
+  public KeyController(){
+    keyPosibles = new boolean[8];
+  }
+  
+  public void updateKeysPressed(){
+      if(key == 'w' || key == 'W'){
+        keyPosibles[0] = true; 
+      }
+      if(key == 's' || key == 'S'){
+        keyPosibles[1] = true; 
+      }
+      if(key == 'a' || key == 'A'){
+        keyPosibles[2] = true;
+      }
+      if(key == 'd' || key == 'D'){
+        keyPosibles[3] = true;
+      }
+      if(keyCode == UP ){
+        keyPosibles[4] = true;
+      }
+      if(keyCode == DOWN ){
+        keyPosibles[5] = true;
+      }
+      if(keyCode == RIGHT ){
+        keyPosibles[6] = true;
+      }
+      if(keyCode == LEFT ){
+        keyPosibles[7] = true;
+      }
+      
+      if(key == 'r' || key == 'R'){
+        x = width/2;
+        y = height/2;
+      }
+      if(key == 'f' || key == 'F'){
+        anguleX = -45;
+        anguleY = 0;
+      }
+  }
+  
+  public void updateKeysReleased(){
+      if(key == 'w' || key == 'W'){
+        keyPosibles[0] = false; 
+      }
+      if(key == 's' || key == 'S'){
+        keyPosibles[1] = false; 
+
+      }
+      if(key == 'a' || key == 'A'){
+        keyPosibles[2] = false;
+      }
+      if(key == 'd' || key == 'D'){
+        keyPosibles[3] = false;
+      }
+      if(keyCode == UP ){
+        keyPosibles[4] = false;
+      }
+      if(keyCode == DOWN ){
+        keyPosibles[5] = false;
+      }
+      if(keyCode == RIGHT ){
+        keyPosibles[6] = false;
+      }
+      if(keyCode == LEFT ){
+        keyPosibles[7] = false;
+      }
+  }
+  
+  private int getKeyPressed(){
+    for(int i = 0; i < keyPosibles.length; i++){
+      if(keyPosibles[i]){
+        return i;
+      }
+    }
+    return -1;
+  }
+  
+  public void moveScreen(){
+    int index = getKeyPressed();
+    switch(index) {
+      case 0:
+        y += zoom;
+        break;
+      case 1:
+        y -= zoom;
+        break;
+      case 2:
+        x += zoom;
+        break;
+      case 3:
+        x -= zoom;
+        break;
+      case 4:
+        anguleX -= moveAxes;
+        break;
+      case 5:
+        anguleX += moveAxes;
+        break;
+      case 6:
+        anguleY += moveAxes;
+        break;
+      case 7:
+        anguleY -= moveAxes;
+        break;
+      default:
+        break;
+    }
+  }
+  
 }
     
     

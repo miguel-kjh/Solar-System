@@ -15,6 +15,7 @@ public class Star extends CelestialBody{
   public void move(){
     pushMatrix();
     rotateY(radians(super.turningSpeed));
+    text(super.name,0,-super.dimension*2);
     shape(super.pshape);
     popMatrix();
     for(Planet planet:listOfPlanets){

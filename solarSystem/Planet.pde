@@ -16,7 +16,8 @@ public class Planet extends CelestialBody{
   public void move(){
     pushMatrix();
     rotateY(radians(super.turningSpeed));
-    translate(distance,0,distance);
+    translate(distance,0,0);
+    text(super.name,0,-super.dimension*2);
     shape(super.pshape);
     for(Satellite satellite:listOfSatellite){
       satellite.move();

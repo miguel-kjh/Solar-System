@@ -12,7 +12,8 @@ public class Satellite extends CelestialBody{
   public void move(){
     pushMatrix();
     rotateZ(radians(super.turningSpeed));
-    translate(distance,0,distance);
+    translate(distance,0,0);
+    text(super.name,0,-super.dimension*2);
     shape(super.pshape);
     popMatrix();
     super.calculateSpeed();
