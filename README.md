@@ -37,22 +37,59 @@ Se ha empleado el uso del patrón de diseño **composite** para implementar la r
    <p align="center">Figura 2: Diagrama de clases</p>
 </p>
 
-Donde la distribución de clase sería la siguiente:
-
-<dl>
-  <dt>Vistas</dt>
-    <dd>Menu: interfaz común a todos los menu.</dd>
-    <dd>StartMenu:menú de inicio.</dd>
-    <dd>KeyMenu:El menú de información de los controles.</dd>
-    <dd>CreateFigure:Crea la figura mediante puntos.</dd>
-    <dd>LineOfPoints:Dibuja la línea de puntos.</dd>
-  <dt>Modelo</dt>
-    <dd>Point: implementa las coordenadas de un punto en el lienzo.</dd>
-  <dt>Controladores</dt>
-    <dd>LineController: para gestionar la aplicación.</dd>
-</dl>
-
 ### Transformaciones y rotación
+
+El método *move* es el encargado de implementar la lógica necesaria para representar los astros, además de haceros girar y moverse. Se han usado las primitivas básicas de processing como *pushMatrix*, *popMatrix*, *rotate* y *translate* para implementar el movimiento y rotación simulando el comportamiento de los planetas.
+
+Para las estrellas:
+
+```java
+  @Override
+  public void move(){
+    pushMatrix();
+    rotateY(radians(super.turningSpeed));
+    text(super.name,0,-super.dimension*2);
+    shape(super.pshape);
+    popMatrix();
+    for(Planet planet:listOfPlanets){
+      planet.move();
+    }
+    super.calculateSpeed();
+  }
+```
+
+Para los planetas:
+
+```java
+  @Override
+  public void move(){
+    pushMatrix();
+    rotateY(radians(super.turningSpeed));
+    translate(distance,0,0);
+    text(super.name,0,-super.dimension*2);
+    shape(super.pshape);
+    for(Satellite satellite:listOfSatellite){
+      satellite.move();
+    }
+    popMatrix();
+    super.calculateSpeed();
+  }
+```
+
+Para los satélites:
+
+```java
+  @Override
+  public void move(){
+    pushMatrix();
+    rotateZ(radians(super.turningSpeed));
+    translate(distance,0,0);
+    text(super.name,0,-super.dimension*2);
+    shape(super.pshape);
+    popMatrix();
+    super.calculateSpeed();
+  }
+```
 
 ## Eventos y Controles
 
