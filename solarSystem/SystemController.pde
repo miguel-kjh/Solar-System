@@ -23,7 +23,7 @@ public class SystemController{
       new Planet(50,0,0.3,-width*.80,"Mars", "data_image/2k_mars.jpg")
     );
     
-    Planet jupiter = new Planet(90,0,0.25,-width,"Jupiter", "data_image/2k_jupiter.jpg");
+    Planet jupiter = new Planet(90,0,0.25,-width*1.1,"Jupiter", "data_image/2k_jupiter.jpg");
     jupiter.add(
       new Satellite(25,0.2,0.2,130,"Titan", "data_image/2k_titan.jpg")
     );
