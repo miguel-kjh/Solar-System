@@ -1,5 +1,4 @@
 # Solar-System
-# Revolution 3D
 ![Version](https://img.shields.io/badge/version-1.0-green)
 
 ## Autor
