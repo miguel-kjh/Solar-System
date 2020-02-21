@@ -16,7 +16,7 @@ Correo: miguel.medina108@alu.ulpgc.es
 6. [Bibliografía](#bibliografía)
 
 ## Introducción
-Esta práctica consiste en diseñar un sistema planetario mediante transformaciones y rotaciones de figuras. Se ha elegido las esferas como figuras 3D para representar los astros, además se han añadido texturas y textos. Asimos el programa dispone de una seríe de controles para que el usuario se pueda mover en el espacio del sistema mínimamente.
+Esta práctica consiste en diseñar un sistema planetario mediante transformaciones y rotaciones de figuras. Se ha elegido las esferas como figuras 3D para representar los astros, además se han añadido texturas y textos. Asimismo el programa dispone de una serie de controles para que el usuario se pueda mover en el espacio del sistema mínimamente.
 
 ## Demostración
 <p align="center"> 
@@ -29,7 +29,7 @@ Para poder ejecutar y probar la práctica solamente se necesita clonar este repo
 - La librería **GifAnimation** para poder reproducir y guardar gifs. Como esta librería no forma parte necesaria para la correcta implementación de la práctica, en el código toda la lógica relacionada con ella se encuentra comentada, además de que afecta al rendimiento de la aplicación.En este [enlace](https://github.com/extrapixel/gif-animation) se encuentra la forma de instalarla.
 
 ## Implementación
-Se ha empleado el uso del patrón de diseño **composite** para implementar la relaciones entre los astros planetarios.
+Se ha empleado el patrón de diseño **Composite** para implementar la relaciones entre los astros planetarios.
 
 ### Diseño de clases
 <p align="center"> 
@@ -116,7 +116,7 @@ Para los satélites:
   </tr>
   <tr>
     <td>Flechas del teclado</td>
-    <td>Mover el angulo de visión</td>
+    <td>Mover el ángulo de visión</td>
   </tr>
 </table>
 
