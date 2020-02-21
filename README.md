@@ -20,7 +20,7 @@ Esta práctica consiste en diseñar un sistema planetario mediante transformacio
 
 ## Demostración
 <p align="center"> 
-   <img src="animation.gif" alt="animation"></img>
+   <img src="data/animation.gif" alt="animation"></img>
    <p align="center">Figura 1: Gif de demostración</p>
 </p>
 
@@ -29,7 +29,7 @@ Para poder ejecutar y probar la práctica solamente se necesita clonar este repo
 - La librería **GifAnimation** para poder reproducir y guardar gifs. Como esta librería no forma parte necesaria para la correcta implementación de la práctica, en el código toda la lógica relacionada con ella se encuentra comentada, además de que afecta al rendimiento de la aplicación.En este [enlace](https://github.com/extrapixel/gif-animation) se encuentra la forma de instalarla.
 
 ## Implementación
-Se ha optado por el patrón arquitectónico **MVC** y se ha empleado el uso del patrón de diseño **composite** para implementar la relaciones entre los astros planetarios.
+Se ha empleado el uso del patrón de diseño **composite** para implementar la relaciones entre los astros planetarios.
 
 ### Diseño de clases
 <p align="center"> 
