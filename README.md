@@ -120,7 +120,7 @@ Para los satélites:
   </tr>
 </table>
 
-Se puede hacer uso de las ruedas del ratón para hacer zoom sobre el sistema planetario.
+Se puede hacer uso de la rueda del ratón para hacer zoom sobre el sistema planetario.
 
 
 ## Bibliografía
